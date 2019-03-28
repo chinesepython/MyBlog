@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.timezone import now
 from mdeditor.fields import MDTextField
+from django.urls import reverse
 # from abc import ABCMeta, abstractmethod, abstractproperty
 
 
@@ -43,6 +44,15 @@ class Article(BaseModel):
     article_order = models.IntegerField('排序,数字越大越靠前', blank=False, null=False, default=0)
     category = models.ForeignKey('Category', verbose_name='分类', on_delete=models.CASCADE, blank=False, null=False)
     tags = models.ManyToManyField('Tag', verbose_name='标签集合', blank=True)
+
+    def get_absolute_url(self):
+        #  reverse 函数，它的第一个参数的值是 'blog:detail'，意思是 blog 应用下的 name=detail 的函数
+        # 由于我们在上面通过 app_name = 'blog' 告诉了 Django 这个 URL 模块是属于 blog 应用的，
+        # 因此 Django 能够顺利地找到
+        #  blog 应用下 name 为 detail 的视图函数，于是 reverse 函数会去解析这个视图函数对应的 URL
+        # self.pk = article.pk 点击跳转的时候，调用此函数，从这里或者路径，然后去detail页面获取功能
+        return reverse('blog:detail', kwargs={'pk': self.pk})
+        pass
 
     class Meta:
         '''
