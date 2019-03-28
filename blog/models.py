@@ -32,6 +32,7 @@ class Article(BaseModel):
     )
     # 文章
     title = models.CharField('标题', max_length=200, unique=True)
+    excerpt = models.CharField('摘要', max_length=200, blank=True)
     body = MDTextField('正文')
     pub_time = models.DateTimeField('发布时间', blank=True, null=True)
     status = models.CharField('文章状态', max_length=1, choices=STATUS_CHOICES, default='p')
