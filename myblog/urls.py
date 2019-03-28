@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r"blog", include('blog.urls')),
+    # 以blog开头下的，链接到blog app下的urls.py
+    path(r"blog/", include('blog.urls')),
 
 ]
