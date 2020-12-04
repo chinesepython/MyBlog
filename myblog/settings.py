@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoblog',
         'USER': 'root',
-        'PASSWORD': 'xuanhui99999',
+        'PASSWORD': '************',
         'HOST': 'localhost',
         'PORT': 3306,
         # 支持emoji表情的数据库
